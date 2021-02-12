@@ -14,10 +14,17 @@ class ItemAdmin(admin.ModelAdmin):
         return obj.rooms.count()
 
 
+class PhotoInline(admin.TabularInline):
+
+    model = models.Photo
+
+
 @admin.register(models.Room)
 class RoomAdmin(admin.ModelAdmin):
 
     """ Room Admin Definition """
+
+    inlines = (PhotoInline,)
 
     fieldsets = (
         (
@@ -73,6 +80,8 @@ class RoomAdmin(admin.ModelAdmin):
         "city",
         "country",
     )
+
+    raw_id_fields = ("host",)
 
     search_fields = ("=city", "^host__username")
 
