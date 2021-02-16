@@ -8,4 +8,24 @@
   {% for room in rooms %}
     <h3>{{room.name}}</h3>
   {% endfor %}
+
+  <h5>
+  {% if page > 1 %}
+    <a href="?page={{page|add:-1}}">&larr;</a>
+  {% else %}
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  {% endif %}
+
+  Page {{page}} of {{page_count}}
+
+  {% if page < page_count %}
+    <a href="?page={{page|add:1}}">&rarr;</a>
+  {% else %}
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  {% endif %}
+  </h5>
+
+  {% for page in page_range %}
+    <a href="?page={{page}}">{{page}}</a>
+  {% endfor %}
 {% endblock %}
