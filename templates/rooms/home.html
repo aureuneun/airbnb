@@ -5,27 +5,27 @@
 {% endblock page_name %}
 
 {%block content %}
-  {% for room in rooms %}
+  {% for room in pages.object_list %}
     <h3>{{room.name}}</h3>
   {% endfor %}
 
   <h5>
-  {% if page > 1 %}
-    <a href="?page={{page|add:-1}}">&larr;</a>
+  {% if pages.has_previous %}
+    <a href="?page={{pages.previous_page_number}}">&larr;</a>
   {% else %}
     <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
   {% endif %}
 
-  Page {{page}} of {{page_count}}
+  Page {{pages.number}} of {{pages.paginator.num_pages}}
 
-  {% if page < page_count %}
-    <a href="?page={{page|add:1}}">&rarr;</a>
+  {% if pages.has_next %}
+    <a href="?page={{pages.next_page_number}}">&rarr;</a>
   {% else %}
     <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
   {% endif %}
   </h5>
 
-  {% for page in page_range %}
+  {% for page in pages.paginator.page_range %}
     <a href="?page={{page}}">{{page}}</a>
   {% endfor %}
 {% endblock %}
