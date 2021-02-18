@@ -2,7 +2,7 @@ from django.db import models
 from core import models as core_models
 
 
-class Message(core_models.TimeStampedModel):
+class Message(core_models.TimeStamped):
 
     """ Message Model Definition """
 
@@ -18,7 +18,7 @@ class Message(core_models.TimeStampedModel):
         return f"{self.user} says: {self.message}"
 
 
-class Conversation(core_models.TimeStampedModel):
+class Conversation(core_models.TimeStamped):
 
     """ Convesation Model Definition """
 

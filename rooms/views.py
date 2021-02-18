@@ -8,6 +8,7 @@ class HomeView(ListView):
 
     model = models.Room
     paginate_by = 10
+    ordering = "created"
 
 
 class RoomDetail(DetailView):

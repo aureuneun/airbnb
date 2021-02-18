@@ -3,7 +3,7 @@ from django.utils import timezone
 from core import models as core_models
 
 
-class Reservation(core_models.TimeStampedModel):
+class Reservation(core_models.TimeStamped):
 
     """ Reservation Model Definition """
 

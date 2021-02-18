@@ -4,9 +4,9 @@ from django_countries.fields import CountryField
 from core import models as core_models
 
 
-class AbstractItem(core_models.TimeStampedModel):
+class AbstractItem(core_models.TimeStamped):
 
-    """ Abstract Item """
+    """ AbstractItem Model Definition"""
 
     name = models.CharField(max_length=80)
 
@@ -49,7 +49,7 @@ class HouseRule(AbstractItem):
         verbose_name = "House Rule"
 
 
-class Photo(core_models.TimeStampedModel):
+class Photo(core_models.TimeStamped):
 
     """ Photo Model Definition """
 
@@ -61,7 +61,7 @@ class Photo(core_models.TimeStampedModel):
         return self.caption
 
 
-class Room(core_models.TimeStampedModel):
+class Room(core_models.TimeStamped):
 
     """ Room Model Definition """
 
