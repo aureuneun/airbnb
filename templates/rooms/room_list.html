@@ -6,7 +6,9 @@
 
 {%block content %}
   {% for room in object_list %}
-    <h3>{{room.name}}</h3>
+    <h3>
+      <a href="{% url 'rooms:detail' room.pk %}">{{room.name}}</a>
+    </h3>
   {% endfor %}
 
   <h5>
