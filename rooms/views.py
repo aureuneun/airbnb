@@ -1,6 +1,4 @@
-from django.views.generic import ListView
-from django.http import Http404
-from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 from . import models
 
 
@@ -12,9 +10,8 @@ class HomeView(ListView):
     paginate_by = 10
 
 
-def room_detail(request, pk):
-    try:
-        room = models.Room.objects.get(pk=pk)
-    except models.Room.DoesNotExist:
-        raise Http404()
-    return render(request, "rooms/detail.html", {"room": room})
+class RoomDetail(DetailView):
+
+    """ RoomDetail Definition """
+
+    model = models.Room
