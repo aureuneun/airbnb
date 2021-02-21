@@ -7,9 +7,9 @@
 {% block search-bar %}
 {% endblock search-bar %}
 
-{%block content %}
+{% block content %}
 
-  <h2>Searching by {{s_city}}<h2>
+  <h2>Searching by {{s_city}}</h2>
 
   <form method="get" action="{% url 'rooms:search' %}">
     {{form.as_p}}
@@ -22,4 +22,4 @@
     <h3>{{room.name}}</h3>
   {% endfor %}
 
-{% endblock %}
+{% endblock content %}
