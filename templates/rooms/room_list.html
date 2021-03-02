@@ -5,6 +5,10 @@
 {% endblock page_name %}
 
 {%block content %}
+
+  <div class="container rounded-xl mx-auto bg-gray-800  h-50vh mt-32 mb-24 bg-cover bg-center" style="background-image:url(https://images.unsplash.com/photo-1536315238512-4c8cebdaaf93?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop)">
+  </div>
+
   {% for room in object_list %}
     <h3>
       <a href="{% url 'rooms:detail' room.pk %}">{{room.name}}</a>

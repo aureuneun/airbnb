@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
+
+.nav_link {
+  @apply px-3 border-b-2 border-white hover:border-gray-600 h-full;
+  a {
+    @apply h-full flex items-center;
+  }
+}
+
 @tailwind utilities;
