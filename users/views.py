@@ -1,6 +1,7 @@
 import os
 import requests
-from django.views.generic import FormView, DetailView
+from django.contrib.auth.views import PasswordChangeView
+from django.views.generic import FormView, DetailView, UpdateView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, reverse
 from django.contrib.auth import authenticate, login, logout
@@ -203,3 +204,50 @@ class ProfileView(DetailView):
 
     model = models.User
     context_object_name = "user_obj"
+
+
+class EditProfileView(UpdateView):
+
+    """ EditProfile View Definition """
+
+    model = models.User
+    template_name = "users/edit-profile.html"
+    fields = [
+        "first_name",
+        "last_name",
+        "gender",
+        "bio",
+        "birthday",
+        "language",
+        "currency",
+    ]
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields["first_name"].widget.attrs = {"placeholder": "First name"}
+        form.fields["last_name"].widget.attrs = {"placeholder": "Last name"}
+        form.fields["bio"].widget.attrs = {"placeholder": "Bio"}
+        form.fields["birthday"].widget.attrs = {"placeholder": "Birthday"}
+        return form
+
+
+class ChangePasswordView(PasswordChangeView):
+
+    """ ChangePassword View Definition """
+
+    template_name = "users/change-password.html"
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields["old_password"].widget.attrs = {"placeholder": "Current password"}
+        form.fields["new_password1"].widget.attrs = {"placeholder": "New password"}
+        form.fields["new_password2"].widget.attrs = {
+            "placeholder": "Confirm new password"
+        }
+        return form
+
+    def get_success_url(self):
+        return self.request.user.get_absolute_url()
