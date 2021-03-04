@@ -14,4 +14,5 @@ urlpatterns = [
     path(
         "verify/<str:code>", views.complete_verification, name="complete-verification"
     ),
+    path("<int:pk>", views.ProfileView.as_view(), name="profile"),
 ]

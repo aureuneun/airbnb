@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core.mail import send_mail
 from django.utils.html import strip_tags
+from django.shortcuts import reverse
 from django.template.loader import render_to_string
 
 
@@ -74,3 +75,6 @@ class User(AbstractUser):
                 html_message=html_message,
             )
             self.save()
+
+    def get_absolute_url(self):
+        return reverse("users:profile", kwargs={"pk": self.pk})
