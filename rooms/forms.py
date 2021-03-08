@@ -43,3 +43,33 @@ class CreatePhotoForm(forms.ModelForm):
         photo = super().save(commit=commit)
         photo.room = models.Room.objects.get(pk=pk)
         photo.save()
+
+
+class CreateRoomForm(forms.ModelForm):
+
+    """ CreateRoom Form Definition """
+
+    class Meta:
+        model = models.Room
+        fields = [
+            "name",
+            "description",
+            "country",
+            "city",
+            "price",
+            "address",
+            "guests",
+            "beds",
+            "bedrooms",
+            "baths",
+            "check_in",
+            "check_out",
+            "instant_book",
+            "room_type",
+            "amenities",
+            "facilities",
+            "house_rules",
+        ]
+
+    def save(self, commit=True):
+        return super().save(commit=commit)
