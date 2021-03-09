@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load is_booked %}
 
 {% block page_name %}
   {{room.name}}
@@ -99,9 +100,12 @@
             </div>
             <div class="grid grid-cols-7 gap-3 justify-items-center">
             {% for day in calendar.get_days  %}
+              {% is_booked room day as is_booked_bool %}
               {% if day.number != 0 %}
                 {% if day.past %}
                   <span class="w-full text-center rounded text-gray-300 p-1">{{day}}</span>
+                {% elif is_booked_bool %}
+                  <span class="w-full text-center rounded text-gray-300 p-1 line-through">{{day}}</span>
                 {% else %}
                   <span class="w-full text-center rounded text-gray-700 p-1 hover:bg-green-400 hover:text-white hover:font-medium cursor-pointer">{{day}}</span>
                 {% endif %}
