@@ -20,4 +20,5 @@ urlpatterns = [
     ),
     path("<int:pk>/", views.ProfileView.as_view(), name="profile"),
     path("toggle-hosting/", views.toggle_hosting, name="toggle-hosting"),
+    path("switch-language/", views.switch_language, name="switch-language"),
 ]
