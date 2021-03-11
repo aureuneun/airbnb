@@ -67,7 +67,7 @@ class User(AbstractUser):
     login_method = models.CharField(
         max_length=20, choices=LOGIN_CHOICES, default=LOGIN_EMAIL
     )
-    objects = managers.CustomModelManager()
+    objects = managers.CustomUserManager()
 
     def verify_email(self):
         if self.verified is False:
