@@ -22,17 +22,26 @@
       </span>
       <div class="flex p-5 border-b w-full">
         <div class="flex flex-col items-center">
+        {% if user == reservation.room.host %}
+        {% include "mixins/user_avatar.html" with user=reservation.guest %}
+          <span class="mt-2 text-gray-500">{{reservation.guest.first_name}}</span>
+        </div>
+        <div class="ml-5 flex flex-col">
+          <span class="font-medium mb-px">Contact your Airbnb Guest</span>
+          <a href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}" class="font-medium text-green-500">Send a Message</a>
+        {% else %}
           {% include "mixins/user_avatar.html" with user=reservation.room.host %}
           <span class="mt-2 text-gray-500">{{reservation.room.host.first_name}}</span>
         </div>
         <div class="ml-5 flex flex-col">
           <span class="font-medium mb-px">Contact your Airbnb Host</span>
-            <a href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}" class="font-medium text-green-500">Send a Message</a>
+          <a href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}" class="font-medium text-green-500">Send a Message</a>
+        {% endif %}
         </div>
       </div>
       <div class="py-10 px-5">
       {% if reservation.status != "canceled" %}
-        {% if reservation.status == "confirmed" and reservation.is_finished %}
+        {% if reservation.status == "confirmed" and reservation.is_finished and reservation.room.reviews.count <= 0 and reservation.room.host != user %}
           <span class="font-medium text-2xl text-center w-full block mb-5">Write your review</span>
           <form method="POST" action="{% url 'reviews:create' reservation.room.pk %}" class="w-1/2 mx-auto">
           {% csrf_token %}

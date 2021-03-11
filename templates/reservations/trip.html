@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block page_name %}
+  Reservations
+{% endblock page_name %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+  <div class="min-h-75vh">
+    <h3 class="text-4xl text-center">My Reservations</h3>
+    <div class="grid grid-cols-2 container mx-auto my-10">
+      <div class="">
+      <h4 class="text-center text-2xl mb-6">Hosting</h4>
+      <div class="flex flex-wrap">
+      {% for room in user_obj.rooms.all %}
+        {% for reservation in room.reservations.all %}
+        {% include 'mixins/room_card.html' with room=reservation.room link="reservation" %}
+        {% endfor %}
+      {% endfor %}
+      </div>
+      </div>
+      <div class="">
+        <h4 class="text-center text-2xl mb-6">Trips</h4>
+        <div class="flex flex-wrap">
+        {% for reservation in user_obj.reservations.all %}
+        {% include 'mixins/room_card.html' with room=reservation.room link="reservation" %}
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

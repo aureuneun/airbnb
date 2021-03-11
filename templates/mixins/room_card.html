@@ -1,5 +1,9 @@
 <div class="w-1/4 mb-10 px-2">
+  {% if link == "reservation" %}
+  <a href="{% url 'reservations:detail' reservation.pk %}">
+  {% elif link == "room" %}
   <a href="{% url 'rooms:detail' room.pk %}">
+  {% endif %}
     <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2" style="background-image: url({{room.get_first_photo}});"></div>
     <div class="flex justify-between mb-2">
       <div class="w-4/5 overflow-hidden flex">

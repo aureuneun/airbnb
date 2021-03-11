@@ -4,6 +4,7 @@ from . import views
 app_name = "reservations"
 
 urlpatterns = [
+    path("trips/", views.trip_view, name="trip"),
     path(
         "create/<int:room>/<int:year>-<int:month>-<int:day>/",
         views.create_reservation_view,

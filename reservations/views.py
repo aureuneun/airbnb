@@ -66,3 +66,8 @@ def edit_reservation_view(request, pk, verb):
     reservation.save()
     messages.success(request, "Reservation updated")
     return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))
+
+
+def trip_view(request):
+    user = request.user
+    return render(request, "reservations/trip.html", {"user_obj": user})
